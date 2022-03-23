@@ -4,11 +4,15 @@
 import HelloWorld from './components/HelloWorld.vue'
 import Home from 'views/Home'
 </script>
-
+<script>
+export default {
+  name: "App"
+}
+</script>
 <template>
   <img alt="Vue logo" src="~assets/logo.png" />
   <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
-  <Home></Home>
+  <router-view></router-view>
 </template>
 
 <style>

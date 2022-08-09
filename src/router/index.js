@@ -9,13 +9,17 @@ const routes = [
       title: "首页"
     } 
   },
+  /* {
+    path: "/home",
+    component: () => import('@c/Layout/index'),
+  }, */
   {
     path: "/home",
-    component: () => import('views/home'),
+    component: () => import('@v/home.vue')
   },
   {
     path: "/iframe",
-    component: () => import('views/iframe'),
+    component: () => import('@v/iframe'),
   }
 ]
 

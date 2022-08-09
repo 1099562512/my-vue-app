@@ -1,22 +1,24 @@
 <template>
   <div>
-    Welcome to Home
-    <iframe-demo></iframe-demo>
+    {{ state.message }}
   </div>
-  <iframe class="iframe" name="i1" width="500" height="300" src="localhost/#/iframe">
-    <iframe-demo></iframe-demo>
-  </iframe>
 </template>
 
 <script setup>
-import iframeDemo from './iframe.vue';
+import { ref, toRefs, watch, reactive } from 'vue'
+import iframeDemo from '@v/iframe.vue';
+const show = ref(false)
+const state = reactive({
+  message: "hello"
+})
+console.log(state); //Proxy {message: 'hello'}
+console.log({...state}); //{message: 'hello'} state结构后对象属性失去响应特性
+console.log(toRefs(state)); //{message: ObjectRefImpl}  toRefs赋予
+
+//const { message } = toRefs(state)
 
 </script>
 
 <style scoped>
-  .iframe {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+@import '@v/home.less';
 </style>

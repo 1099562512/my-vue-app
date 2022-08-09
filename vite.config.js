@@ -14,8 +14,8 @@ export default defineConfig({
     alias: {
       "@": pathResolve('src'),
       "assets": pathResolve('src/assets'),
-      "views": pathResolve('src/views'),
-      "components": pathResolve('src/components')
+      "@v": pathResolve('src/views'),
+      "@c": pathResolve('src/components')
     },
     extensions: ['.vue','.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
@@ -23,5 +23,8 @@ export default defineConfig({
     'process.env': {
       'BASE_API':"http://localhost:8021/api"
     }
+  },
+  css: {
+    devSourcemap: true
   }
 })

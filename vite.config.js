@@ -7,8 +7,39 @@ function pathResolve(dir) {
   return resolve(process.cwd(), '.', dir);
 }
 
+export default defineConfig(({command, mode, ssrBuild}) => {
+  //command: 'serve'开发环境下  'build' 生产环境下
+  if(command === 'serve') {
+    console.log(command, mode);
+    return {
+      plugins: [vue()],
+      resolve: {
+        alias: {
+          "@": pathResolve('src'),
+          "assets": pathResolve('src/assets'),
+          "@v": pathResolve('src/views'),
+          "@c": pathResolve('src/components')
+        },
+        extensions: ['.vue','.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+      },
+    }
+  }else {
+    return {
+      plugins: [vue()],
+      resolve: {
+        alias: {
+          "@": pathResolve('src'),
+          "assets": pathResolve('src/assets'),
+          "@v": pathResolve('src/views'),
+          "@c": pathResolve('src/components')
+        },
+        extensions: ['.vue','.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+      },
+    }
+  }
+})
 // https://vitejs.dev/config/
-export default defineConfig({
+/* export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
@@ -26,5 +57,8 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true
+  },
+  optimizeDeps: {
+    exclude: [] //
   }
-})
+}) */

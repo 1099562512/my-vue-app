@@ -11,14 +11,11 @@ const show = ref(false)
 const state = reactive({
   message: "hello"
 })
-console.log(state); //Proxy {message: 'hello'}
-console.log({...state}); //{message: 'hello'} state结构后对象属性失去响应特性
-console.log(toRefs(state)); //{message: ObjectRefImpl}  toRefs赋予
-
+console.log(import.meta.env);
 //const { message } = toRefs(state)
 
 </script>
 
 <style scoped>
-@import '@v/home.less';
+  @import '@v/home.less';
 </style>

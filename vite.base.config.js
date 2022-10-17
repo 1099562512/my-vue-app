@@ -17,5 +17,4 @@ export default {
     },
     extensions: ['.vue','.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
-  //envPrefix: 'ENV_' //重新指定env前缀, 默认为VITE_
 }

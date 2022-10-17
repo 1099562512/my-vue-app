@@ -23,9 +23,37 @@ export default defineConfig(({command, mode, ssrBuild}) => {
    * 
    */
   console.log(process.cwd());
-  //直接找到env， 再
+  //直接找到env， 再找环境.env
   const env = loadEnv(mode, process.cwd(), '')
-  return envResolver[command]()
+  return {
+    ...envResolver[command](),
+    ...{
+      optimizeDeps: {
+        exclude: [] //将指定数组中的依赖不进行依赖预构建
+      },
+      envPrefix: "ENV_", //配置vite注入客户端环境变量(import.meta.env)校验的env前缀, 默认VITE_
+      css: {
+        modules: { //对css模块化的默认行为进行覆盖配置,最终会传给
+          localsConvention: 'camelCaseOnly', //修改生成配置对象的key的展示形式（驼峰还是中划线形式）
+          scopeBehavior: "local", //配置当前的模块化行为是模块化local还是全局化global（关闭模块化）
+          genrateScopedName: "[name]_[local]_[hash:5]", //生成类名规则
+          hashPrefix: "", //哈希前缀
+          globalModulePaths: [] //不想参与css模块化的路径
+        },
+        preprocessorOptions: { //key + config, key代表预处理器的名
+          less: { //整个配置对象都会最终给到less的执行参数中去
+            //在webpack里给less-loader配置就好了
+            math: "always",
+            globalVars: { //全局变量
+              mainColor: "red"
+            } 
+          }, 
+          sass: {}
+        },
+        devSourcemap: true //开启css文件的索引, 文件压缩混淆之后会丧失正常的位置信息, 开启后可以看到正确的错误信息（开发环境开启，生产环境关闭）
+      }
+    }
+  }
 })
 
 // https://vitejs.dev/config/

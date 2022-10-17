@@ -1,17 +1,24 @@
 <template>
   <div>
-    {{ state.message }}
+    {{ message }}
   </div>
 </template>
 
 <script setup>
 import { ref, toRefs, watch, reactive } from 'vue'
 import iframeDemo from '@v/iframe.vue';
+import { useStore } from "@/store-pinia/index"
+import { storeToRefs } from 'pinia';
+
 const show = ref(false)
+
+const store = useStore()
+const { count, message } = storeToRefs(store)
+
 const state = reactive({
-  message: "hello"
+  message: '123'
 })
-console.log(import.meta.env);
+//console.log(import.meta.env);
 //const { message } = toRefs(state)
 
 </script>

@@ -1,3 +1,6 @@
 .a {
-  background: yellow;
+  background-color: var(--mainColor);
+  width: clamp(100px, 20%, 500px); /* preset-env会帮我们做语法降级， vite内部会有一个主流浏览器的支持表 */
+  height: 200px;
+  user-select: none;
 }

@@ -1,0 +1,4 @@
+/* 使用css最新变量属性的单独使用css文件不需要经过less编译器 */
+:root {
+  --mainColor: #6495ed
+}

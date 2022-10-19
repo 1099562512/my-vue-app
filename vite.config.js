@@ -3,6 +3,9 @@ import viteBaseConfig from './vite.base.config'; //基础配置
 import viteProdConfig from './vite.prod.config'; //生产环境配置
 import viteDevConfig from './vite.dev.config' // 开发环境配置
 
+const postcssPresetEnv = require('postcss-preset-env')
+const path = require('path')
+
 const envResolver = {
   'build': () => {
     console.log('生产环境');
@@ -50,7 +53,13 @@ export default defineConfig(({command, mode, ssrBuild}) => {
           }, 
           sass: {}
         },
-        devSourcemap: true //开启css文件的索引, 文件压缩混淆之后会丧失正常的位置信息, 开启后可以看到正确的错误信息（开发环境开启，生产环境关闭）
+        devSourcemap: true, //开启css文件的索引, 文件压缩混淆之后会丧失正常的位置信息, 开启后可以看到正确的错误信息（开发环境开启，生产环境关闭）
+        postcss: {
+          plugins: [postcssPresetEnv({
+             //让postcss去知道， 有一些变量它需要记下来，兼容低版本浏览器
+            importFrom: path.resolve(__dirname, "./src/design/var/globalVariable.css")
+          })]
+        }
       }
     }
   }

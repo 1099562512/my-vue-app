@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="a">
     {{ message }}
   </div>
 </template>
@@ -23,6 +23,6 @@ const state = reactive({
 
 </script>
 
-<style scoped>
-  @import '@v/home.less';
+<style>
+  @import "./home.less"
 </style>

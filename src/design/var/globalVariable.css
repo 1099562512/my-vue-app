@@ -2,3 +2,11 @@
 :root {
   --mainColor: #6495ed
 }
+
+.ml {
+  margin-left: 10px;
+}
+
+.mr {
+  margin-right: 10px;
+}

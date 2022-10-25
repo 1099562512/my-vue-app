@@ -34,7 +34,7 @@ export default defineConfig(({command, mode, ssrBuild}) => {
       optimizeDeps: {
         exclude: [] //将指定数组中的依赖不进行依赖预构建
       },
-      envPrefix: "ENV_", //配置vite注入客户端环境变量(import.meta.env)校验的env前缀, 默认VITE_
+      //envPrefix: "", //配置vite注入客户端环境变量(import.meta.env)校验的env前缀, 默认VITE_
       css: {
         modules: { //对css模块化的默认行为进行覆盖配置,最终会传给
           localsConvention: 'camelCaseOnly', //修改生成配置对象的key的展示形式（驼峰还是中划线形式）

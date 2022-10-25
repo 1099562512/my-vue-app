@@ -1,5 +1,5 @@
 <template>
-  <Layout class="xgz-default-layout">
+  <!-- <Layout class="xgz-default-layout">
     <Layout>
       <div class="header">header</div>
       <Layout class="xgz-layout">
@@ -11,40 +11,45 @@
         </div>
       </Layout>
     </Layout>
-  </Layout>
+  </Layout> -->
+  <a-layout class="layout-wraper">
+    <a-layout-header>Header</a-layout-header>
+    <a-layout>
+      <a-row type="flex" style="flex-grow: 1;">
+        <a-col :span="3">
+          <a-layout-sider style="height: 100%"><Asider /></a-layout-sider>
+        </a-col>
+        <a-col :span="21">
+          <a-layout-content style="height: 100%">Content</a-layout-content>
+        </a-col>
+      </a-row>
+    </a-layout>
+    <a-layout-footer>Footer</a-layout-footer>
+  </a-layout>
 </template>
 
 <script setup>
-  import { Layout } from 'ant-design-vue'
   import Asider from './Asider.vue';
   import Content from './Content.vue';
-  import AsiderMenu from "@c/Menu"
-  
 </script>
 
 <style lang="less">
-  .xgz-default-layout {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  .layout-wraper {
+    height: calc(100vh - 32px);
   }
-  .header {
-    height: 8vh;
-    text-align: center;
-    background-color:antiquewhite;
+  .ant-layout-header {
+    background-color: orange;
   }
-  .xgz-layout {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    height: 92vh;
+  .ant-layout-sider {
+    background-color: #3b81f0;
+    width: 100% !important;
+    max-width: 300px !important;
   }
-  .asider {
-    width: 20vw;
-    background-color: bisque;
+  .ant-layout-content {
+    background-color: rgb(209, 228, 38);
   }
-  .content {
-    flex-grow: 1;
-    background-color: rgb(150, 165, 64);
+  .ant-layout-footer {
+    background-color: rgb(189, 190, 240);
+    
   }
 </style>

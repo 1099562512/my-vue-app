@@ -60,6 +60,9 @@ export default defineConfig(({command, mode, ssrBuild}) => {
             importFrom: path.resolve(__dirname, "./src/design/var/globalVariable.css")
           })]
         }
+      },
+      server: {
+        proxy: {}
       }
     }
   }

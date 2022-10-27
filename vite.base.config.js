@@ -1,6 +1,6 @@
 //该配置文件是由node运行的, 所以可以访问process、__dirname
 import vue from '@vitejs/plugin-vue'
-import { visualizer } from 'rollup-plugin-visualizer' //查看资源占比插件
+//import { visualizer } from 'rollup-plugin-visualizer' //查看资源占比插件
 
 //按需引入Antd组件
 import Components from 'unplugin-vue-components/vite'
@@ -15,7 +15,7 @@ function pathResolve(dir) {
 }
 
 export default {
-  plugins: [vue(), visualizer(), Components({
+  plugins: [vue(), Components({
     resolvers: [AntDesignVueResolver()]
   })],
   resolve: {
@@ -25,12 +25,19 @@ export default {
       "@v": pathResolve('src/views'),
       "@c": pathResolve('src/components')
     },
-    extensions: ['.vue','.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+    //extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
   build: {
+    //minify: false, //关闭混淆
     rollupOptions: { //配置rollup的一些构建策略
       output: { //控制输出
-        assetFileNames: "[hash].[name].[ext]" //控制打包文件名称
+        //assetFileNames: "[hash].[name].[ext]" //控制打包文件名称
+        manualChunks: (id) => {
+          //id：引用文件的绝对路径
+          if(id.includes("node_modules")) {
+            return "vendor"
+          }
+        }
       }
     },
     //assetsInlineLimit: 4096, //4kb 如果图片小于4kb就打包成base64字符串，这样可以减少请求数

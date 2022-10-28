@@ -2,6 +2,8 @@
 import vue from '@vitejs/plugin-vue'
 //import { visualizer } from 'rollup-plugin-visualizer' //查看资源占比插件
 
+import { viteMockServe } from 'vite-plugin-mock'
+
 //按需引入Antd组件
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers' //按需加载antd插件
@@ -17,7 +19,7 @@ function pathResolve(dir) {
 export default {
   plugins: [vue(), Components({
     resolvers: [AntDesignVueResolver()]
-  })],
+  }), viteMockServe()],
   resolve: {
     alias: {
       "@": pathResolve('src'),

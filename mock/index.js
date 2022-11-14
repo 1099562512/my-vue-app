@@ -1,6 +1,6 @@
 export default [
   {
-    url: "/api/getMeun",
+    url: "/api/getMenu",
     method: 'get',
     response: () => {
       return {

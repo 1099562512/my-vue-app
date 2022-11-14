@@ -17,15 +17,20 @@ function pathResolve(dir) {
 }
 
 export default {
-  plugins: [vue(), Components({
-    resolvers: [AntDesignVueResolver()]
-  }), viteMockServe()],
+  plugins: [
+    vue(), 
+    viteMockServe(),
+    Components({
+      resolvers: [AntDesignVueResolver()]
+    })
+  ],
   resolve: {
     alias: {
       "@": pathResolve('src'),
       "assets": pathResolve('src/assets'),
       "@v": pathResolve('src/views'),
-      "@c": pathResolve('src/components')
+      "@c": pathResolve('src/components'),
+      "@api": pathResolve('src/api')
     },
     //extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },

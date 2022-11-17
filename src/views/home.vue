@@ -1,10 +1,10 @@
 <template>
-  <div class="link">
+  <!-- <div class="link">
     <a-button type="primary" @click="jumpTo(1)" class="ml">跳转到1</a-button>
     <a-button type="primary" @click="jumpTo(2)" class="ml">跳转到2</a-button>
     <a-button type="primary" @click="jumpTo(3)" class="ml">跳转到3</a-button>
     <a-button type="primary" @click="jumpTo(4)" class="ml">跳转到4</a-button>
-  </div>
+  </div> -->
   <div class="view">
     <router-view></router-view>
   </div>

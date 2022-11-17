@@ -4,27 +4,51 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: "/",
-    redirect: "/home/1"
+    redirect: "/map/baidu"
   },
   {
-    path: "/home",
-    component: () => import('@v/home.vue'),
+    path: "/map",
+    component: () => import('@c/Layout/index.vue'),
     children: [
       {
-        path: "/home/1",
-        component: () => import('@c/HelloWorld.vue')
+        path: "/map/baidu",
+        component: () => import('@v/Map/baiduMap.vue')
       },
       {
-        path: "/home/2",
-        component: () => import('@c/Menu/index.vue')
+        path: "/map/gaode",
+        component: () => import('@v/Map/gaodeMap.vue')
       },
       {
-        path: "/home/3",
-        component: () => import('@c/Layout/index.vue')
+        path: "/map/leaflet",
+        component: () => import('@v/Map/leafLetMap.vue')
+      }
+    ]
+  },
+  {
+    path: "/video",
+    component: () => import('@c/Layout/index.vue'),
+    children: [
+      {
+        path: "/video/demo1",
+        component: () => import('@v/video/demo1.vue')
       },
       {
-        path: "/home/4",
-        component: () => import('@c/Layout/Asider.vue')
+        path: "/video/demo2",
+        component: () => import('@v/video/demo2.vue')
+      }
+    ]
+  },
+  {
+    path: "/threejs",
+    component: () => import('@c/Layout/index.vue'),
+    children: [
+      {
+        path: "/threejs/demo1",
+        component: () => import('@v/ThreeJs/demo1.vue')
+      },
+      {
+        path: "/threejs/demo2",
+        component: () => import('@v/ThreeJs/demo2.vue')
       }
     ]
   },

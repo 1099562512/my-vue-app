@@ -20,7 +20,7 @@
           <a-layout-sider style="height: 100%"><Asider /></a-layout-sider>
         </a-col>
         <a-col :span="21">
-          <a-layout-content style="height: 100%">Content</a-layout-content>
+          <a-layout-content style="height: 100%"><router-view></router-view></a-layout-content>
         </a-col>
       </a-row>
     </a-layout>
@@ -35,7 +35,8 @@
 
 <style lang="less">
   .layout-wraper {
-    height: calc(100vh - 32px);
+    //height: calc(100vh - 32px);
+    height: 100vh;
   }
   .ant-layout-header {
     background-color: orange;

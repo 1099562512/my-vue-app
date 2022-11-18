@@ -4,25 +4,20 @@
     :open-keys="state.openKeys"
     @click="getMenu" 
     @openChange="openChange">
-    <template v-for="item in state.menuList" :key="item.path">
-      <!-- <a-menu-item>{{item.title}}</a-menu-item> -->
-      <template v-if="item.subMenu">
-        <a-sub-menu :key="item.id" :title="item.title">
-          <a-menu-item v-for="menuItem in item.subMenu" :key="menuItem.path">{{menuItem.title}}</a-menu-item>
-        </a-sub-menu>
-      </template>
-    </template>
+    <asider-menu :menuList="state.menuList"></asider-menu>
   </a-menu>
 </template>
 <script setup>
+  import AsiderMenu from '../Menu/index.vue'
   import { reactive, ref } from 'vue'
   import { useRouter, useRoute } from 'vue-router'
+
   const router = useRouter(),
         route = useRoute()
 
   const state = reactive({
     openKeys: [],
-
+    rootSubmenuKeys: [],
     menuList: [
       {
         id: 1,
@@ -79,23 +74,46 @@
             icon: ''
           }
         ]
+      },
+      {
+        id: 4,
+        title: '测试',
+        subMenu: [
+          {
+            id: 5,
+            title: '测试1',
+            subMenu: [
+              {
+                title: '测试2',
+                path: ''
+              }
+            ]
+          }
+        ]
       }
     ]
   })
 
+  state.rootSubmenuKeys = state.menuList.map(item => item.id)
+
   const getMenu = (e) => {
     const { key } = e
-    console.log(e);
     router.push(key)
   }
 
-  const openChange = (openKey) => {
-    console.log(openKey);
+  const openChange = (openKeys) => {
+    const latestOpenKey = openKeys.find(key => state.openKeys.indexOf(key) === -1);
+    if (state.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      state.openKeys = openKeys;
+    } else {
+      state.openKeys = latestOpenKey ? [latestOpenKey] : [];
+    }
+    /* console.log(openKey);
     if(openKey.length > 0) {
       const lastKey = []
       lastKey.push(openKey[openKey.length - 1])
       console.log(lastKey);
       state.openKeys = lastKey
-    }
+    } */
   }
 </script>

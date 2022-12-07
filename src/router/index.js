@@ -30,11 +30,11 @@ const routes = [
     children: [
       {
         path: "/video/demo1",
-        component: () => import('@v/video/demo1.vue')
+        component: () => import('@v/Video/demo1.vue')  //文件夹需要严格按照大小写，否则改文件夹下的页面会失去热更新
       },
       {
         path: "/video/demo2",
-        component: () => import('@v/video/demo2.vue')
+        component: () => import('@v/Video/demo2.vue')
       }
     ]
   },

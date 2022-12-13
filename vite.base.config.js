@@ -9,6 +9,7 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers' //按需加载antd插件
 
 import { resolve } from 'path'
+import path from 'path-browserify'
 
 function pathResolve(dir) {
   //process.cwd() 当前文件执行根目录， __diename 当前文件执行目录
@@ -26,6 +27,7 @@ export default {
   ],
   resolve: {
     alias: {
+      path: 'path-browserify',
       "@": pathResolve('src'),
       "assets": pathResolve('src/assets'),
       "@v": pathResolve('src/views'),

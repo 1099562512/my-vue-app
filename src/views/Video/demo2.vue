@@ -1,6 +1,9 @@
 <template>
   <div class=''>
-    Video demo2
+    <div v-drag class="wraper">
+      <div class="title">title</div>
+      <div class="title">content</div>
+    </div>
   </div>
 </template>
 <script setup>

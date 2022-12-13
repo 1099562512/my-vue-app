@@ -77,16 +77,15 @@ router.addRoute('/' ,{
 }) */
 
 router.beforeEach((to, from) => {
-  console.log("beforeEach");
+  //console.log("beforeEach");
   //next()
   return undefined
   //可以使用next控制导航，也可以通过返回一个值
 })
 //导航钩子，在每次导航后执行。返回一个删除注册钩子的函数
 router.afterEach((to, from, failure) => {
-  console.log("afterEach");
+  //console.log("afterEach");
 })
 
-console.log(router);
 
 export default router

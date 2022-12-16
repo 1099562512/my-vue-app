@@ -46,9 +46,9 @@
     width: 100% !important;
     max-width: 300px !important;
   }
-  .ant-layout-content {
+  /* .ant-layout-content {
     background-color: rgb(209, 228, 38);
-  }
+  } */
   .ant-layout-footer {
     background-color: rgb(189, 190, 240);
     

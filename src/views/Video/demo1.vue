@@ -1,28 +1,42 @@
 <template>
-  <div class=''>
-    <!-- <a-button type="primary" @click="showModal">弹窗12312</a-button> -->
-    <video
-      id="video-wrap"
-      preload="auto"
-      muted
-      autoplay
-      style="width: 100%;height: 300px"
-    >
-      <source />
-    </video>
+  <div class='video-wrap'>
+    <div style="width: 500px; background: #000; position: relative">
+      <a-spin v-if="isloading" class="absolute-center" tip="加载中..."/>
+      <video
+        id="video"
+        preload="auto"
+        muted
+        autoplay
+        style="width: 100%; height: 300px;"
+      >
+        <source />
+      </video>
+      <div class="tool">
+        <div class="tool-item">
+          <caret-left-outlined @click="onPause" class="icon"/>
+        </div>
+        <div class="tool-item">
+          <pause-outlined @click="onPlay" class="icon"/>
+        </div>
+        
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
   import { ref, onMounted, nextTick, reactive } from 'vue'
   import flvjs from 'flv.js'
 
+  import { CaretLeftOutlined, PauseOutlined } from '@ant-design/icons-vue'
+
+  const isloading = ref(true)
   let player = null
   
   const destoryPlayer = () => {
     if(player) {
       player.pause()
       player.unload()
-      player.detachMediaElement
+      player.detachMediaElement()
       player.destroy()
       player = null
     }
@@ -37,8 +51,9 @@
       console.log('媒体信息');
     })
     player.on(flvjs.Events.STATISTICS_INFO, (res) => {
-      console.log('请求数据信息');
-      console.log(res);
+      /* console.log('请求数据信息');
+      console.log(res); */
+      isloading.value = false
     })
 
     player.on(flvjs.Events.ERROR, (errorType, errorDetail, errorInfo) => {
@@ -46,13 +61,23 @@
     })
   }
 
-  onMounted(() => {
-    let videoDom = document.getElementById('video-wrap')
+  const onPause = () => {
+    player && player.pause()
+  }
+
+  const onPlay = () => {
+    isloading.value = true
+    initPlayer()
+  }
+
+  const initPlayer = () => {
+    let videoDom = document.getElementById('video')
     destoryPlayer()
     player = flvjs.createPlayer({
       type: 'flv',
-      //url: 'http://192.168.2.104/live/test.live.flv',
-      url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
+      cors: true,
+      url: 'http://192.168.254.205:81/test/test.live.flv',
+      //url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
       isLive: false,
       enableWorker: true, // 启用分离的线程进行转换
       enableStashBuffer: false, // 关闭IO隐藏缓冲区
@@ -63,6 +88,9 @@
     player.load()
     player.play()
     addPlayerEvent()
+  }
+  onMounted(() => {
+    initPlayer()
     /* setInterval(() => {
       //console.log(videoDom.currentTime); //当前视频时间
       //console.log(videoDom.duration); //视频总时间
@@ -70,5 +98,30 @@
     }, 1000); */
   })
 </script>
-<style lang='scss' scope>
+<style lang='less' scope>
+  .video-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .tool {
+    display: flex;
+    height: 40px;
+    background: #3b81f0;
+    align-items: center;
+    .tool-item {
+      width: 40px;
+      color: #fff;
+    }
+  }
+  .icon {
+    font-size: 20px;
+  }
+
+  .absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff
+  }
 </style>

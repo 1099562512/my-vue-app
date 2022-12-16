@@ -36,6 +36,14 @@ export default {
     },
     //extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
+  server: {
+    proxy: {
+      '/live': {
+        target: 'http://192.168.2.104',
+        changeOrigin: true
+      }
+    }
+  },
   build: {
     //minify: false, //关闭混淆
     rollupOptions: { //配置rollup的一些构建策略

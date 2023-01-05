@@ -29,6 +29,7 @@ export default {
     alias: {
       path: 'path-browserify',
       "@": pathResolve('src'),
+      "@u": pathResolve('src/utils'),
       "assets": pathResolve('src/assets'),
       "@v": pathResolve('src/views'),
       "@c": pathResolve('src/components'),

@@ -1,8 +1,11 @@
 <template>
   <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
-  <router-view></router-view>
+  <AppProvider>
+    <router-view></router-view>
+  </AppProvider>
 </template>
 <script setup>
+  import AppProvider from '@c/Application/AppProvider.vue'
 </script>
 
 <style>

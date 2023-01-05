@@ -1,16 +1,25 @@
 <template>
   <div class=''>
-    <div class="wrap" :style="style" >
+    <!-- <div class="wrap" :style="style" >
       <div ref="title" class="title">title</div>
       <div class="content">content</div>
       <div ref="footer" class="footer">{{height}}</div>
-    </div>
+    </div> -->
+    <a-space>
+      <a-button type="primary" @click="addVideo(1)">添加1</a-button>
+      <a-button type="primary" @click="addVideo(2)">添加2</a-button>
+      <a-button type="primary" @click="addVideo(3)">添加3</a-button>
+    </a-space>
+    <demo v-for="item in videoList" :key="item.id" :videoInfo="item"></demo>
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, toRef } from 'vue'
+import { useStore } from 'vuex'
 import { useDraggable, useElementSize } from '@vueuse/core'
+import demo from '@c/demo/demo.vue'
 
+const store = useStore()
 const title = ref(null)
 const footer = ref(null)
 
@@ -18,6 +27,13 @@ const { width, height } = useElementSize(footer)
 const {x, y, style} = useDraggable(title, {
   initialValue: {x: 40, y: 40}
 })
+
+const videoList = toRef(store.state, 'videoList')
+
+const addVideo = (id) => {
+  store.commit('ADD_VIDEO', { id: id })
+}
+
 onMounted(() => {
   
 })

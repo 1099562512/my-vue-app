@@ -91,6 +91,8 @@
   }
   onMounted(() => {
     initPlayer()
+
+    
     /* setInterval(() => {
       //console.log(videoDom.currentTime); //当前视频时间
       //console.log(videoDom.duration); //视频总时间

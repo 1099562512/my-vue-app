@@ -18,7 +18,6 @@
         <div class="tool-item">
           <pause-outlined @click="onPlay" class="icon"/>
         </div>
-        
       </div>
     </div>
   </div>

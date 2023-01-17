@@ -35,6 +35,10 @@ const routes = [
       {
         path: "/video/demo2",
         component: () => import('@v/Video/demo2.vue')
+      },
+      {
+        path: "/video/livePlayerDemo",
+        component: () => import('@v/Video/livePlayerDemo.vue')
       }
     ]
   },

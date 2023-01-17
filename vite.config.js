@@ -25,7 +25,7 @@ export default defineConfig(({command, mode, ssrBuild}) => {
    * yarn build --mode production默认
    * 
    */
-  console.log(process.cwd());
+  //console.log(process.cwd());
   //直接找到env， 再找环境.env
   const env = loadEnv(mode, process.cwd(), '')
   return {
@@ -62,7 +62,9 @@ export default defineConfig(({command, mode, ssrBuild}) => {
         }
       },
       server: {
-        proxy: {}
+        proxy: {
+          
+        }
       }
     }
   }

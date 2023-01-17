@@ -72,6 +72,11 @@
             path: '/video/demo2',
             title: '视频示例2',
             icon: ''
+          },
+          {
+            path: '/video/livePlayerDemo',
+            title: 'livePlayerDemo',
+            icon: ''
           }
         ]
       },

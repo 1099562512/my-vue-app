@@ -1,6 +1,7 @@
 //该配置文件是由node运行的, 所以可以访问process、__dirname
 import vue from '@vitejs/plugin-vue'
 //import { visualizer } from 'rollup-plugin-visualizer' //查看资源占比插件
+import copy from 'rollup-plugin-copy'
 
 import { viteMockServe } from 'vite-plugin-mock'
 
@@ -19,7 +20,12 @@ function pathResolve(dir) {
 
 export default {
   plugins: [
-    vue(), 
+    vue(),
+    copy({
+      targets: [
+        {src: 'node_modules/@liveqing/liveplayer-v3/dist/component/liveplayer-lib.min.js', dest: 'public/js'},
+      ]
+    }), 
     viteMockServe(),
     Components({
       resolvers: [AntDesignVueResolver()]

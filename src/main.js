@@ -7,6 +7,9 @@ import axios from 'axios'
 import '@/design/index.less';
 import { useAllDirective } from '@/directive/index.js'
 
+/**
+ * 
+ */
 const app = createApp(App)
 
 /* axios.get('/api/getMenu').then(res => {

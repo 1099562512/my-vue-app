@@ -23,7 +23,6 @@ export default defineConfig(({command, mode, ssrBuild}) => {
    * mode
    * yarn dev --mode develoment默认， 会将mode设置为development
    * yarn build --mode production默认
-   * 
    */
   //console.log(process.cwd());
   //直接找到env， 再找环境.env
@@ -59,11 +58,6 @@ export default defineConfig(({command, mode, ssrBuild}) => {
              //让postcss去知道， 有一些变量它需要记下来，兼容低版本浏览器
             importFrom: path.resolve(__dirname, "./src/design/var/globalVariable.css")
           })]
-        }
-      },
-      server: {
-        proxy: {
-          
         }
       }
     }

@@ -48,6 +48,10 @@ export default {
       '/live': {
         target: 'http://192.168.2.104',
         changeOrigin: true
+      },
+      '/apis': {
+        target: 'http://192.168.1.101:3030',
+        changeOrigin: true
       }
     }
   },
